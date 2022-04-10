@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { Layout, Page, Text, Link } from '@vercel/examples-ui'
 
 export default function About(props) {
-  
+
   const router = useRouter()
     if (router.isFallback) {
         return (
@@ -14,7 +14,7 @@ export default function About(props) {
           </Page>
         )
     }
-  
+
   return (
     <Page>
       <Head>
@@ -51,7 +51,7 @@ const mockDB = [
     name: 'Site 1',
     description: 'Subdomain + custom domain',
     subdomain: 'subdomain-1',
-    customDomain: 'custom-domain-1.com',
+    customDomain: 'webberwang.com',
   },
   {
     name: 'Site 2',

@@ -4,13 +4,14 @@
   "repository": "https://github.com/vercel/examples.git",
   "license": "MIT",
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS='--inspect' npx next dev",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
     "@vercel/examples-ui": "^0.2.6",
     "next": "^12.0.10",
+    "prettier": "^2.5.1",
     "react": "latest",
     "react-dom": "latest"
   },

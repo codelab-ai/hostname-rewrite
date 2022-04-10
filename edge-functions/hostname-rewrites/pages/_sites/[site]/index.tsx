@@ -2,19 +2,39 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { Layout, Page, Text, Link, List } from '@vercel/examples-ui'
 
+const mockDB = [
+  {
+    name: 'Site 1',
+    description: 'Subdomain + custom domain',
+    subdomain: 'subdomain-1',
+    customDomain: 'webberwang.com',
+  },
+  {
+    name: 'Site 2',
+    description: 'Subdomain only',
+    subdomain: 'subdomain-2',
+    customDomain: null,
+  },
+  {
+    name: 'Site 3',
+    description: 'Subdomain only',
+    subdomain: 'subdomain-3',
+    customDomain: null,
+  },
+]
+
 export default function Index(props) {
-  
   const router = useRouter()
-    if (router.isFallback) {
-        return (
-          <Page>
-            <Text variant="h1" className="mb-6">
-              Loading...
-            </Text>
-          </Page>
-        )
-    }
-  
+  if (router.isFallback) {
+    return (
+      <Page>
+        <Text variant="h1" className="mb-6">
+          Loading...
+        </Text>
+      </Page>
+    )
+  }
+
   return (
     <Page>
       <Head>
@@ -31,59 +51,33 @@ export default function Index(props) {
         <Link href="/about">About</Link>
       </div>
       <Text variant="h2" className="mb-6">
-        More examples:
+        More examples!:
       </Text>
       <List>
-        <li>
-          <Link href="https://subdomain-1.vercel.sh">
-            subdomain-1.vercel.sh
-          </Link>
-        </li>
-        <li>
-          <Link href="https://subdomain-2.vercel.sh">
-            subdomain-2.vercel.sh
-          </Link>
-        </li>
-        <li>
-          <Link href="https://subdomain-3.vercel.sh">
-            subdomain-3.vercel.sh
-          </Link>
-        </li>
-        <li>
-          <Link href="https://custom-domain-1.com">custom-domain-1.com</Link>{' '}
-          (maps to{' '}
-          <Link href="https://subdomain-1.vercel.sh">
-            subdomain-1.vercel.sh
-          </Link>
+        {mockDB.map((db, i) => {
+          const href = `https://${db.subdomain}.${process.env.NEXT_PUBLIC_ROOT_URL}`
+          const customHref = `https://${db.customDomain}`
+          return (
+            <>
+              <li key={i}>
+                <Link href={href}>{href}</Link>
+              </li>
+              {db.customDomain ? (
+                <li>
+                  <Link href={customHref}>{customHref}</Link>
+                  {' '}(Points to {href})
+                </li>
+              ) : null}
+              <br />
+            </>
           )
-        </li>
+        })}
       </List>
     </Page>
   )
 }
 
 Index.Layout = Layout
-
-const mockDB = [
-  {
-    name: 'Site 1',
-    description: 'Subdomain + custom domain',
-    subdomain: 'subdomain-1',
-    customDomain: 'custom-domain-1.com',
-  },
-  {
-    name: 'Site 2',
-    description: 'Subdomain only',
-    subdomain: 'subdomain-2',
-    customDomain: null,
-  },
-  {
-    name: 'Site 3',
-    description: 'Subdomain only',
-    subdomain: 'subdomain-3',
-    customDomain: null,
-  },
-]
 
 export async function getStaticPaths() {
   // get all sites that have subdomains set up
@@ -101,6 +95,7 @@ export async function getStaticPaths() {
       return { params: { site: item.customDomain } }
     }),
   ]
+  console.log(paths)
   return {
     paths: paths,
     fallback: true, // fallback true allows sites to be generated using ISR

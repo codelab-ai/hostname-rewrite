@@ -32,6 +32,7 @@ To give a bit of context of how this can be applied in a real-world context, we 
 - [app.vercel.pub](https://app.vercel.pub) (editing backend)
 
 For more info on the Platforms Starter Kit:
+
 - [Twitter Announcement](https://twitter.com/vercel/status/1484237805941403655)
 - [Github Repo](https://github.com/vercel/platforms)
 - [Official Guide](https://vercel.com/guides/nextjs-multi-tenant-application)
@@ -44,7 +45,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/hostname-rewrites&env=ROOT_URL&project-name=hostname-rewrites&repository-name=hostname-rewrites)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/hostname-rewrites&env=NEXT_PUBLIC_ROOT_URL&project-name=hostname-rewrites&repository-name=hostname-rewrites)
 
 ### Clone and Deploy
 
@@ -76,4 +77,4 @@ yarn dev
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
 
-> 💡 Do note that you will need to replace the `ROOT_URL` variable in the `.env.example` file with your domain of choice and add that domain as a wildcard domain your Vercel project.
+> 💡 Do note that you will need to replace the `NEXT_PUBLIC_ROOT_URL` variable in the `.env.example` file with your domain of choice and add that domain as a wildcard domain your Vercel project.
